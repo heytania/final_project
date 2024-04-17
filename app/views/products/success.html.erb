@@ -1,0 +1,30 @@
+<div class="invoice">
+  <h1>Order Confirmed!</h1>
+  <div class=invoiceBorder>
+    <h4>Shipping To:</h4>
+    <p><%= current_user.first_name %> <%= current_user.last_name %></p>
+    <p><%= current_user.address %></p>
+    <p><%= current_user.postal_code %></p>
+    <p><%= current_user.city %>, <%= current_user.province.name %></p>
+    <h4>Items:</h4>
+    <ol>
+      <% @cart.each do |product| %>
+        <li><%= product.name %> - $<%= product.price %></li>
+      <% end %>
+    </ol>
+    <p>-----------------------</p>
+    <h5>Subtotal: $<%= cart_total %></h5>
+    <h5>Sales Tax: $<%= (current_user.province.tax_rate * cart_total).round(2) %></h5>
+    <% if cart_total >= 50 %>
+      <h5>Shipping: Free!</h5>
+      <h4>Total: $<%= ((current_user.province.tax_rate * cart_total) + cart_total).round(2) %></h4>
+    <% else %>
+      <h5>Shipping: $9.99</h5>
+      <h4>Total: $<%= ((current_user.province.tax_rate * cart_total) + cart_total + 9.99).round(2) %></h4>
+    <% end %>
+
+  </div>
+  <div class="backButton">
+    <%= button_to "Back to Site", destroy_user_session_path, method: :delete %>
+  </div>
+</div>

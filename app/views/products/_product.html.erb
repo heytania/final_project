@@ -1,0 +1,24 @@
+<div id="<%= dom_id product %>">
+
+  <h3><%= product.name %></h3>
+
+  <p>
+    <strong>Brand:</strong>
+    <%= product.brand.capitalize %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= product.description %>
+  </p>
+
+  <p>
+    <strong>Price:</strong>
+    $<%= product.price %>
+  </p>
+
+  <p>
+    <%= image_tag product.image, alt: "Picture of the product.", style: 'max-width: 400px' %>
+  </p>
+
+</div>

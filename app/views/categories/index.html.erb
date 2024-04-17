@@ -1,0 +1,7 @@
+<div class="categories">
+  <h2>Categories</h2>
+
+  <% @categories.order("name ASC").each do |category| %>
+    <h5><%= link_to category.name, category %></h5>
+  <% end %>
+</div>

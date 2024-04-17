@@ -1,0 +1,26 @@
+<br>
+<div class="results">
+  <h4><%= pluralize(@products.count, "Result") %></h4>
+</div>
+  <br>
+<div class="container">
+  <table class="table table-light table-striped">
+    <thead>
+      <tr>
+        <th><%= sort_link(@query, :brand, "Brand", default_order: :asc)%></th>
+        <th><%= sort_link(@query, :name, "Name", default_order: :asc)%></th>
+        <th><%= sort_link(@query, :price, "Price", default_order: :asc)%></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.brand %></td>
+        <td><%= link_to product.name, product %></td>
+        <td>$<%= product.price %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

@@ -1,0 +1,56 @@
+<div class="checkoutForm">
+  <h1>Checkout!</h1>
+  <h5>Subtotal: $<%= cart_total %></h5>
+  <h5>Sales Tax: $<%= (current_user.province.tax_rate * cart_total).round(2) %></h5>
+  <% if cart_total >= 50 %>
+    <h5>Shipping: Free!</h5>
+    <h4>Total: $<%= ((current_user.province.tax_rate * cart_total) + cart_total).round(2) %></h4>
+  <% else %>
+    <h5>Shipping: $9.99</h5>
+    <h4>Total: $<%= ((current_user.province.tax_rate * cart_total) + cart_total + 9.99).round(2) %></h4>
+  <% end %>
+  <p>----------------------------</p>
+  <h4>Shipping Information:</h4>
+  <p>Name: <%= current_user.first_name %> <%= current_user.last_name %></p>
+  <p>Address: <%= current_user.address %></p>
+  <p>Postal Code: <%= current_user.postal_code %></p>
+  <p>City: <%= current_user.city %></p>
+  <p>Province: <%= current_user.province.name %></p>
+  <p>----------------------------</p>
+</div>
+<div class="cardPayment">
+  <h4>Payment Method:</h4>
+  <%= form_tag( { :action => "success", }, { :method => :get }) do %>
+    <%= radio_button(:card, "card", "Visa", :required => true) %> Visa&nbsp;&nbsp;
+    <%= radio_button(:card, "card", "Mastercard") %> Mastercard&nbsp;&nbsp;
+    <%= radio_button(:card, "card", "American Express") %> American Express
+    <br>
+    <br>
+    <%= label_tag "name" %><br>
+    <%= text_field :name, "name", :required => true %><br>
+
+    <%= label_tag "card_number_(no_spaces)" %><br>
+    <%= text_field :card_number, "card_number", :required => true, :maxlength => 16, :pattern => "^[0-9]{15}(?:[0-9]{1})?$" %><br>
+
+    <div class="expiration">
+      <div class="expirationDate">
+        <%= label_tag "expiration" %><br>
+        <%= date_select :expiration, "expiration", start_year: 2023, order: [:month, :year] %>
+      </div>
+      <div class="securityCode">
+        <%= label_tag "security_code" %>
+        <%= text_field :security_code, "security_code", :required => true, :maxlength => 3, :pattern => "[0-9][0-9][0-9]" %>
+      </div>
+
+      <div class="actions">
+      <%= submit_tag "Purchase" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="checkoutCancel">
+  <%= link_to "Go Back to Cart", cart_path, method: :get %>
+</div>
+
+
+

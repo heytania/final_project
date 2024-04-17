@@ -1,0 +1,13 @@
+<div class="categories">
+  <%= render @category %>
+  <ul>
+  <% @category.products.each do |product| %>
+    <li><%= link_to product.name, product %></li>
+  <% end %>
+  </ul>
+
+  <div>
+    <%= link_to "Back to categories", categories_path %>
+  </div>
+  <br>
+</div>

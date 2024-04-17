@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ffdfe8;">
+  <div class="container-fluid">
+    <h2 class="navbar-text">Trendify</h2><br>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <span class="navbar-text"><%= link_to "Products", products_path %></span>
+        </li>
+        <li class="nav-item">
+          <span class="navbar-text"><%= link_to "Categories", categories_path %></span>
+        </li>
+        <li class="nav-item">
+          <span class="navbar-text"><%= link_to "About Us", about_path %></span>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <span class="navbar-text">Welcome, <%= current_user.first_name %>!</span>
+          </li>
+          <li class="nav-item">
+            <span class="navbar-text"><%= link_to "Edit Account", edit_user_registration_path %></span>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <span class="navbar-text"><%= link_to "Log In", new_user_session_path %></span>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <span class="navbar-text"><%= link_to "Shopping Cart", cart_path %></span>
+        </li>
+            <li><%= link_to "Admin Dashboard", admin_dashboard_path %></li>
+      </ul>
+      <%= render "search/form" %>
+    </div>
+  </div>
+</nav>
