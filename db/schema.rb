@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_195359) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_17_183328) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -182,6 +182,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_195359) do
     t.decimal "tax_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "pst"
+    t.decimal "gst"
+    t.decimal "hst"
   end
 
   create_table "users", force: :cascade do |t|
